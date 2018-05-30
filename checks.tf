@@ -23,12 +23,6 @@ module "teams_optimizely" {
   alarmist_short_name = "teams_opt"
 }
 
-module "logx_optimizely" {
-  source              = "./modules"
-  alarmist_address    = "logx.optimizely.com"
-  alarmist_short_name = "logx_opt"
-}
-
 module "tapi_optimizely" {
   source              = "./modules"
   alarmist_address    = "tapi.optimizely.com"
