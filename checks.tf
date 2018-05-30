@@ -33,6 +33,7 @@ module "tapi_optimizely" {
   source              = "./modules"
   alarmist_address    = "tapi.optimizely.com"
   alarmist_short_name = "tapi_opt"
+  alarmist_path       = "/ping"
 }
 
 module "api_optimizely" {
