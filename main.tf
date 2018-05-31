@@ -1,61 +1,38 @@
-provider "aws" {
-  region = "us-west-2"
+module "appdotoptimizely" {
+  source              = "./modules/alarmist_check"
+  alarmist_address    = "app.optimizely.com"
+  alarmist_short_name = "app_opt"
 }
 
-terraform {
-  backend "s3" {
-    encrypt        = true
-    bucket         = "optimtizely-terraform-remote-state-storage-s3-alarmist"
-    dynamodb_table = "optimtizely-terraform-state-lock-dynamo-alarmist"
-    region         = "us-west-2"
-    key            = "terraform.tfstate"
-  }
+module "reference_snippet" {
+  source              = "./modules/alarmist_check"
+  alarmist_address    = "cdn.optimizely.com"
+  alarmist_short_name = "ref_snip"
+  alarmist_path       = "/js/9253108584.js"
 }
 
-# terraform state file setup
-# create an S3 bucket to store the state file in
-resource "aws_s3_bucket" "alarmist-terraform-state-storage-s3" {
-  bucket = "optimtizely-terraform-remote-state-storage-s3-alarmist"
-  acl    = "private"
-
-  versioning {
-    enabled = true
-  }
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
-
-  lifecycle_rule {
-    enabled                                = true
-    abort_incomplete_multipart_upload_days = 1
-
-    noncurrent_version_expiration {
-      days = 30
-    }
-  }
-
-  # This flag provides extra protection against the destruction of a given
-  # resource. When this is set to true, any plan that includes a destroy of
-  # this resource will return an error message.
-  lifecycle {
-    prevent_destroy = true
-  }
+module "www_optimizely" {
+  source              = "./modules/alarmist_check"
+  alarmist_address    = "www.optimizely.com"
+  alarmist_short_name = "www_opt"
 }
 
-# create a dynamodb table for locking the state file
-resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
-  name           = "optimtizely-terraform-state-lock-dynamo-alarmist"
-  hash_key       = "LockID"
-  read_capacity  = 20
-  write_capacity = 20
+module "teams_optimizely" {
+  source              = "./modules/alarmist_check"
+  alarmist_address    = "teams.optimizely.com"
+  alarmist_short_name = "teams_opt"
+}
 
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
+module "tapi_optimizely" {
+  source              = "./modules/alarmist_check"
+  alarmist_address    = "tapi.optimizely.com"
+  alarmist_short_name = "tapi_opt"
+  alarmist_path       = "/ping"
+}
+
+module "api_optimizely" {
+  source              = "./modules/alarmist_check"
+  alarmist_address    = "api.optimizely.com"
+  alarmist_short_name = "api_opt"
+  alarmist_path       = "/health"
 }
