@@ -22,7 +22,8 @@ resource "aws_cloudwatch_metric_alarm" "alarm" {
   statistic           = "Minimum"
   threshold           = "1"
   alarm_description   = "This check monitors ${var.alarmist_address}."
-  alarm_actions       =  ["${split(",", var.alarmist_action_arns)}"]
+  alarm_actions       = ["${split(",", var.alarmist_action_arns)}"]
+
   dimensions = {
     HealthCheckId = "${aws_route53_health_check.r53_healthcheck.id}"
   }
