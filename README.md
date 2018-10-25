@@ -4,9 +4,9 @@ Monitoring using Route53 HealthChecks and Cloudwatch alarms
 
 To update this:
 
-`terraform init`
-`terraform plan -out someplanname`
-`terraform apply someplanname`
+1. `terraform init`
+2. `terraform plan -out someplanname`
+3. `terraform apply someplanname`
 
 See module details for parameters and information.
 
