@@ -1,17 +1,17 @@
 terraform {
-  backend "s3" {
-    encrypt        = true
-    bucket         = "optimtizely-terraform-remote-state-storage-s3-alarmist"
-    dynamodb_table = "optimtizely-terraform-state-lock-dynamo-alarmist"
-    region         = "us-west-2"
-    key            = "terraform.tfstate"
-  }
+ backend "s3" {
+   encrypt        = true
+   bucket         = "terraform-remote-state-storage-s3-alarmist"
+   dynamodb_table = "optimtizely-terraform-state-lock-dynamo-alarmist"
+   region         = "us-east-1"
+   key            = "terraform.tfstate"
+ }
 }
 
 # terraform state file setup
 # create an S3 bucket to store the state file in
 resource "aws_s3_bucket" "alarmist-terraform-state-storage-s3" {
-  bucket = "optimtizely-terraform-remote-state-storage-s3-alarmist"
+  bucket = "terraform-remote-state-storage-s3-alarmist"
   acl    = "private"
 
   versioning {

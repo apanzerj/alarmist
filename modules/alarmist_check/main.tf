@@ -1,5 +1,3 @@
-provider "aws" {}
-
 resource "aws_route53_health_check" "r53_healthcheck" {
   fqdn              = "${var.alarmist_address}"
   port              = 443
