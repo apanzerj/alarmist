@@ -10,3 +10,9 @@ variable "alarmist_action_arns" {
   description = "Comma seperated list of arns to action on when moved to failed state."
   default = ""
 }
+
+variable "alarmist_protocol" {
+  type = "string"
+  description = "HTTP or HTTPS check"
+  default = "HTTPS"
+}

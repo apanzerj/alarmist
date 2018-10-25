@@ -1,7 +1,7 @@
 resource "aws_route53_health_check" "r53_healthcheck" {
   fqdn              = "${var.alarmist_address}"
-  port              = 443
-  type              = "HTTPS"
+  port              = "${var.alarmist_protocol == "HTTP" ? 80 : 443}"
+  type              = "${var.alarmist_protocol}"
   failure_threshold = "3"
   request_interval  = "30"
   measure_latency   = true
