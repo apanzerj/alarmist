@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 module "appdotoptimizely" {
   source              = "./modules/alarmist_check"
   alarmist_address    = "app.optimizely.com"

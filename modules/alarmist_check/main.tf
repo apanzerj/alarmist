@@ -1,7 +1,4 @@
-provider "aws" {
-  alias  = "use1"
-  region = "us-east-1"
-}
+provider "aws" {}
 
 resource "aws_route53_health_check" "r53_healthcheck" {
   fqdn              = "${var.alarmist_address}"
@@ -18,7 +15,6 @@ resource "aws_route53_health_check" "r53_healthcheck" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "alarm" {
-  provider            = "aws.use1"
   alarm_name          = "alarmist-for-${var.alarmist_short_name}"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
