@@ -1,11 +1,11 @@
 terraform {
- backend "s3" {
-   encrypt        = true
-   bucket         = "terraform-remote-state-storage-s3-alarmist"
-   dynamodb_table = "optimtizely-terraform-state-lock-dynamo-alarmist"
-   region         = "us-east-1"
-   key            = "terraform.tfstate"
- }
+  backend "s3" {
+    encrypt        = true
+    bucket         = "terraform-remote-state-storage-s3-alarmist"
+    dynamodb_table = "optimtizely-terraform-state-lock-dynamo-alarmist"
+    region         = "us-east-1"
+    key            = "terraform.tfstate"
+  }
 }
 
 # terraform state file setup

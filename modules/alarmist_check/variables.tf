@@ -6,13 +6,13 @@ variable "alarmist_path" {
 }
 
 variable "alarmist_action_arns" {
-  type = "string"
+  type        = "string"
   description = "Comma seperated list of arns to action on when moved to failed state."
-  default = ""
+  default     = ""
 }
 
 variable "alarmist_protocol" {
-  type = "string"
+  type        = "string"
   description = "HTTP or HTTPS check"
-  default = "HTTPS"
+  default     = "HTTPS"
 }
