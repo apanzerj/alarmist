@@ -51,11 +51,3 @@ module "api_optimizely" {
   alarmist_action_arns = "${aws_sns_topic.message_queue.arn}"
 }
 
-module "test_endpoint" {
-  source               = "./modules/alarmist_check"
-  alarmist_address     = "tester.dz.optimizely.com"
-  alarmist_short_name  = "tester"
-  alarmist_path        = "/foo.html"
-  alarmist_protocol    = "HTTP"
-  alarmist_action_arns = "${aws_sns_topic.message_queue.arn}"
-}
