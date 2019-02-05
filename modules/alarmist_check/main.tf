@@ -9,7 +9,7 @@ resource "aws_route53_health_check" "r53_healthcheck" {
 
   tags = {
     Name = "${var.alarmist_short_name} - HealthCheck by Alarmist"
-    Alarmist = "${var.alarmist_address}"
+    alarmist_url = "${var.alarmist_address}"
   }
 }
 
