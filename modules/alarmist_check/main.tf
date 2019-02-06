@@ -17,11 +17,11 @@ resource "aws_cloudwatch_metric_alarm" "alarm" {
   alarm_name          = "alarmist-for-${var.alarmist_short_name}"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
-  metric_name         = "HealthCheckStatus"
+  metric_name         = "HealthCheckPercentageHealthy"
   namespace           = "AWS/Route53"
   period              = "60"
-  statistic           = "Minimum"
-  threshold           = "1"
+  statistic           = "Average"
+  threshold           = "90"
   alarm_description   = "This check monitors ${var.alarmist_address}."
   alarm_actions       = ["${split(",", var.alarmist_action_arns)}"]
 
