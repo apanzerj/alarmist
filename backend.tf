@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     encrypt        = true
     bucket         = "terraform-remote-state-storage-s3-alarmist"
-    dynamodb_table = "optimtizely-terraform-state-lock-dynamo-alarmist"
+    dynamodb_table = "terraform-state-lock-dynamo-alarmist"
     region         = "us-east-1"
     key            = "terraform.tfstate"
   }
@@ -45,7 +45,7 @@ resource "aws_s3_bucket" "alarmist-terraform-state-storage-s3" {
 
 # create a dynamodb table for locking the state file
 resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
-  name           = "optimtizely-terraform-state-lock-dynamo-alarmist"
+  name           = "terraform-state-lock-dynamo-alarmist"
   hash_key       = "LockID"
   read_capacity  = 20
   write_capacity = 20
